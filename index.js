@@ -31,7 +31,11 @@ const nonInteractive = () => {
 };
 
 const interactive = () => {
-  const requests = ['Input a: ', 'Input b: ', 'Input c: '];
+  const requests = [
+    '\x1b[0mInput a: \x1b[1;32m',
+    '\x1b[0mInput b: \x1b[1;32m',
+    '\x1b[0mInput c: \x1b[1;32m',
+  ];
   const NUM_REQUEST = requests.length;
   const params = [];
 
@@ -44,14 +48,14 @@ const interactive = () => {
     if (params.length < NUM_REQUEST) {
       if (isNaN(data)) {
         console.log(
-          `Error. Expected a valid real number, got ${data
+          `\x1b[0mError. Expected a valid real number, got ${data
             .toString()
             .trim()} instead`
         );
 
         question(params.length);
-      } else if (data.toString().trim() === 0 && params.length === 0) {
-        console.log(`Error. a cannot be 0`);
+      } else if (data.toString().trim() == 0 && params.length == 0) {
+        console.log(`\x1b[0mError. a cannot be 0`);
         question(params.length);
       } else {
         params.push(+data.toString().trim());
@@ -69,8 +73,9 @@ const interactive = () => {
 
 const squareEquation = (a, b, c) => {
   console.log(
-    `Equation is: 
-    (${a.toFixed(1)}) x^2 + (${b.toFixed(1)}) x + (${c.toFixed(1)}) = 0`
+    `\x1b[0mEquation is: (${a.toFixed(1)}) x^2 + (${b.toFixed(
+      1
+    )}) x + (${c.toFixed(1)}) = 0`
   );
 
   const discr = b ** 2 - 4 * a * c;

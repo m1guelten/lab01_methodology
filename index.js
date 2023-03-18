@@ -42,7 +42,7 @@ const interactive = () => {
   question(0);
   process.stdin.on('data', (data) => {
     if (params.length < NUM_REQUEST) {
-      if (!isNum(data)) {
+      if (isNaN(data)) {
         console.log(
           `Error. Expected a valid real number, got ${data
             .toString()
@@ -70,8 +70,6 @@ const interactive = () => {
 const formatChecking = (data) => {
   return /^-?\d+.?\d*\s-?\d+.?\d*\s-?\d+.?\d*/.test(data);
 };
-
-const isNum = (arg) => !isNaN(parseFloat(arg.toString().trim()));
 
 //nonInteractive();
 interactive();

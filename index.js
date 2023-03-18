@@ -24,7 +24,7 @@ const nonInteractive = () => {
           console.log('Error. a cannot be 0');
           return;
         }
-        console.log(`\n a=${a} b=${b} c=${c} `);
+        squareEquation(a, b, c);
       }
     });
   }
@@ -59,7 +59,7 @@ const interactive = () => {
           question(params.length);
         } else {
           const [a, b, c] = params;
-          console.log(`\n a=${a} b=${b} c=${c} `);
+          squareEquation(a, b, c);
           process.exit();
         }
       }
@@ -90,6 +90,4 @@ const squareEquation = (a, b, c) => {
 const formatChecking = (data) =>
   /^-?\d+.?\d*\s-?\d+.?\d*\s-?\d+.?\d*/.test(data);
 
-//nonInteractive();
-//interactive();
-squareEquation(1, 5, 7);
+filePath === undefined ? interactive() : nonInteractive();

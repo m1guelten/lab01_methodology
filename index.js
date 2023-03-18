@@ -67,9 +67,29 @@ const interactive = () => {
   });
 };
 
-const formatChecking = (data) => {
-  return /^-?\d+.?\d*\s-?\d+.?\d*\s-?\d+.?\d*/.test(data);
+const squareEquation = (a, b, c) => {
+  console.log(
+    `Equation is: 
+    (${a.toFixed(1)}) x^2 + (${b.toFixed(1)}) x + (${c.toFixed(1)}) = 0`
+  );
+
+  const discr = b ** 2 - 4 * a * c;
+
+  if (discr < 0) console.log('There are 0 roots');
+  else {
+    const x1 = (-b + Math.sqrt(discr)) / (2 * a);
+    const x2 = (-b - Math.sqrt(discr)) / (2 * a);
+    console.log(
+      discr === 0
+        ? `There are 1 roots \nx1 = ${x1.toFixed(1)}`
+        : `There are 2 roots\nx1 = ${x1.toFixed(1)}\nx2 = ${x2.toFixed(1)}`
+    );
+  }
 };
 
+const formatChecking = (data) =>
+  /^-?\d+.?\d*\s-?\d+.?\d*\s-?\d+.?\d*/.test(data);
+
 //nonInteractive();
-interactive();
+//interactive();
+squareEquation(1, 5, 7);

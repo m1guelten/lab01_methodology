@@ -91,3 +91,4 @@ const formatChecking = (data) =>
   /^-?\d+.?\d*\s-?\d+.?\d*\s-?\d+.?\d*/.test(data);
 
 filePath === undefined ? interactive() : nonInteractive();
+console.log(`Створємо помилковий console.log для revert commit`)

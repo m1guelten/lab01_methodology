@@ -7,27 +7,28 @@ const nonInteractive = () => {
   if (!fs.existsSync(path.resolve(__dirname, filePath))) {
     console.log(`file ${filePath} does not exist`);
     return;
-  } else {
-    fs.readFile(path.resolve(__dirname, filePath), 'utf-8', (err, data) => {
-      if (err) throw err;
-
-      if (!formatChecking(data)) {
-        console.log('invalid file format');
-        return;
-      } else {
-        const [a, b, c] = data
-          .replace(/\n/, '')
-          .split(' ')
-          .map((elem) => +elem);
-
-        if (a === 0) {
-          console.log('Error. a cannot be 0');
-          return;
-        }
-        squareEquation(a, b, c);
-      }
-    });
   }
+
+  fs.readFile(path.resolve(__dirname, filePath), 'utf-8', (err, data) => {
+    if (err) throw err;
+
+    if (!formatChecking(data)) {
+      console.log('invalid file format');
+      return;
+    }
+
+    const [a, b, c] = data
+      .replace(/\n/, '')
+      .split(' ')
+      .map((elem) => +elem);
+
+    if (a === 0) {
+      console.log('Error. a cannot be 0');
+      return;
+    }
+
+    squareEquation(a, b, c);
+  });
 };
 
 const interactive = () => {
@@ -93,6 +94,6 @@ const squareEquation = (a, b, c) => {
 };
 
 const formatChecking = (data) =>
-  /^-?\d+.?\d*\s-?\d+.?\d*\s-?\d+.?\d*/.test(data);
+  /^-?\d+\.?\d*\s-?\d+\.?\d*\s-?\d+\.?\d*/.test(data);
 
 filePath === undefined ? interactive() : nonInteractive();
